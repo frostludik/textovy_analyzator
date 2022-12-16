@@ -1,2 +1,2 @@
 # textovy_analyzator
-Ahoj
+Ahoj vsem
