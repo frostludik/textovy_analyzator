@@ -51,6 +51,7 @@ registered_users = {
     "liz" : "pass123"
     }
 
+#login process
 username = input("Enter your username: ")
 password = input("Enter your password: ")
 
@@ -60,6 +61,7 @@ else:
     print(separator, "Unregistered user, terminating the program..", sep="\n")
     quit()
 
+# text choice
 choice = input("Enter a number btw. 1 and 3 to select text: ")
 if choice.isalpha():
     print("Selected option is not number, terminating program..")
@@ -70,26 +72,22 @@ else:
     print("Selected option not between 1 and 3, terminating program..")
     quit()
 
-
+#prepare and format text
 cleared_words = list()
 for word in chosen_text.split():
     cleared_words.append(word.strip(",.;:"))
 
+#count individual cases
 word_occurence = {"total" : [], "titled": [] , "upper" : [], "lower" : [] , "numbers" : []}
-# number of words
 for word in cleared_words:
     if word is not "":
         word_occurence["total"].append(word)
-# title case words
     if word.istitle():
         word_occurence["titled"].append(word)
-# upper words
     elif word.isupper():
         word_occurence["upper"].append(word)
-# lower case words
     elif word.islower():
         word_occurence["lower"].append(word)
-# number words
     elif word.isnumeric():
         word_occurence["numbers"].append(int(word))
 
@@ -109,5 +107,24 @@ print(f"There are {number_of_numbers} numeric strings")
 print(f"The sum of all numbers is {sum_of_numbers}")
 print(separator)
 
+#get words lengths
+words_length = []
+for word in cleared_words:
+    words_length.append(len(word))
 
+counts = {}
+for length in words_length:
+    if length not in counts:
+        counts[length] = 1
+    else:
+        counts[length] += 1
+
+#formated output lengths
+header = ["LEN", "OCCURENCES", "NR"]
+print(separator)
+print(f"{header[0]: <3} | {header[1]: <19}| {header[2]}")
+print(separator)
+for key, value in sorted(counts.items()):
+    chart = value * "*"
+    print(f"{key: <3} | {chart: <19}| {value}")
 
