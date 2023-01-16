@@ -1,5 +1,5 @@
 """
-projekt_1.py: první projekt do Engeto Online Python Akademie
+textovy_analyzator.py (projekt_1): první projekt do Engeto Online Python Akademie
 
 author: Ludek Mraz
 email: ludek.mraz@centrum.cz
@@ -34,7 +34,7 @@ garpike and stingray are also present.'''
 ]
 separator = "-" * 45
 
-#registered users
+# used registered users
 # +------+-------------+
 # | user |   password  |
 # +------+-------------+
@@ -54,7 +54,6 @@ registered_users = {
 #login process
 username = input("Enter your username: ")
 password = input("Enter your password: ")
-
 if registered_users.get(username) == password:
     print(separator, f"Welcome to the app, {username}", "We have 3 texts to be analyzed.", separator, sep="\n")
 else:
@@ -80,7 +79,7 @@ for word in chosen_text.split():
 #count individual cases
 word_occurence = {"total" : [], "titled": [] , "upper" : [], "lower" : [] , "numbers" : []}
 for word in cleared_words:
-    if word is not "":
+    if word != "":
         word_occurence["total"].append(word)
     if word.istitle():
         word_occurence["titled"].append(word)
@@ -98,6 +97,7 @@ number_of_lower = len(word_occurence["lower"])
 number_of_numbers = len(word_occurence["numbers"])
 sum_of_numbers = sum(word_occurence["numbers"])
 
+#output individual cases
 print(separator)
 print(f"There are {number_of_words} words in the selected text.")
 print(f"There are {number_of_title} titlecase words.")
@@ -119,12 +119,12 @@ for length in words_length:
     else:
         counts[length] += 1
 
-#formated output lengths
+#formated output of lengths
 header = ["LEN", "OCCURENCES", "NR"]
-print(separator)
 print(f"{header[0]: <3} | {header[1]: <19}| {header[2]}")
 print(separator)
 for key, value in sorted(counts.items()):
     chart = value * "*"
     print(f"{key: <3} | {chart: <19}| {value}")
+print(separator)
 
