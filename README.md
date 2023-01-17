@@ -1,2 +1,2 @@
 # textovy_analyzator
-Ahoj vsem
+Projekt 1 do Engeto Python online akademie
