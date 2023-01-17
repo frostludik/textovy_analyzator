@@ -83,11 +83,11 @@ for word in cleared_words:
         word_occurence["total"].append(word)
     if word.istitle():
         word_occurence["titled"].append(word)
-    elif word.isupper():
+    if word.isupper():
         word_occurence["upper"].append(word)
-    elif word.islower():
+    if word.islower():
         word_occurence["lower"].append(word)
-    elif word.isnumeric():
+    if word.isnumeric():
         word_occurence["numbers"].append(int(word))
 
 number_of_words = len(word_occurence["total"])
