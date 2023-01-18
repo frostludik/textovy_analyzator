@@ -83,28 +83,25 @@ for word in chosen_text.split():
     cleared_words.append(word.strip(",.;:!?"))
 
 #count individual cases
-word_occurence = {
-    "total" : [], "titled": [] , "upper" : [],
-    "lower" : [] , "numbers" : []
-    }
+number_of_words = 0
+number_of_title = 0
+number_of_upper = 0
+number_of_lower = 0
+number_of_numbers = 0
+sum_of_numbers = 0
+
 for word in cleared_words:
     if word != "":
-        word_occurence["total"].append(word)
+        number_of_words += 1
     if word.istitle():
-        word_occurence["titled"].append(word)
+        number_of_title += 1
     if word.isupper():
-        word_occurence["upper"].append(word)
+        number_of_upper += 1
     if word.islower():
-        word_occurence["lower"].append(word)
+        number_of_lower += 1
     if word.isnumeric():
-        word_occurence["numbers"].append(int(word))
-
-number_of_words = len(word_occurence["total"])
-number_of_title = len(word_occurence["titled"])
-number_of_upper = len(word_occurence["upper"])
-number_of_lower = len(word_occurence["lower"])
-number_of_numbers = len(word_occurence["numbers"])
-sum_of_numbers = sum(word_occurence["numbers"])
+        number_of_numbers += 1
+        sum_of_numbers = sum_of_numbers + int(word)
 
 #output individual cases
 print(f"\nTEXT {choice} \n{chosen_text}")
