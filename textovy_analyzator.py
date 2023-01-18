@@ -1,10 +1,12 @@
 """
-textovy_analyzator.py (projekt_1): první projekt do Engeto Online Python Akademie
+textovy_analyzator.py (projekt_1):
+první projekt do Engeto Online Python Akademie
 
 author: Ludek Mraz
 email: ludek.mraz@centrum.cz
 discord: Luděk M.#5570
 """
+
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
@@ -54,15 +56,18 @@ registered_users = {
 #login process
 username = input("Enter your username: ")
 password = input("Enter your password: ")
+
 if registered_users.get(username) == password:
-    print(separator, f"Welcome to the app, {username}", "We have 3 texts to be analyzed.", separator, sep="\n")
+    print(separator, f"Welcome to the app, {username}!", 
+    "We have 3 texts to be analyzed", separator, sep="\n")
 else:
-    print(separator, "Unregistered user, terminating the program..", sep="\n")
+    print(f"{separator} \nUnregistered user, terminating the program..")
     quit()
 
 # text choice
-choice = input("Enter a number btw. 1 and 3 to select text: ")
-if choice.isalpha():
+choice = input("Enter a number between 1 and 3 to select text: ")
+
+if not choice.isnumeric():
     print("Selected option is not number, terminating program..")
     quit()
 elif int(choice) > 0 and int(choice) < 4:
@@ -73,11 +78,15 @@ else:
 
 #prepare and format text
 cleared_words = list()
+
 for word in chosen_text.split():
-    cleared_words.append(word.strip(",.;:"))
+    cleared_words.append(word.strip(",.;:!?"))
 
 #count individual cases
-word_occurence = {"total" : [], "titled": [] , "upper" : [], "lower" : [] , "numbers" : []}
+word_occurence = {
+    "total" : [], "titled": [] , "upper" : [],
+    "lower" : [] , "numbers" : []
+    }
 for word in cleared_words:
     if word != "":
         word_occurence["total"].append(word)
@@ -98,21 +107,22 @@ number_of_numbers = len(word_occurence["numbers"])
 sum_of_numbers = sum(word_occurence["numbers"])
 
 #output individual cases
-print(separator)
 print(f"There are {number_of_words} words in the selected text.")
 print(f"There are {number_of_title} titlecase words.")
 print(f"There are {number_of_upper} uppercase words.")
 print(f"There are {number_of_lower} lowercase words.")
-print(f"There are {number_of_numbers} numeric strings")
-print(f"The sum of all numbers is {sum_of_numbers}")
+print(f"There are {number_of_numbers} numeric strings.")
+print(f"The sum of all numbers is {sum_of_numbers}.")
 print(separator)
 
 #get words lengths
 words_length = []
+
 for word in cleared_words:
     words_length.append(len(word))
 
 counts = {}
+
 for length in words_length:
     if length not in counts:
         counts[length] = 1
@@ -123,6 +133,7 @@ for length in words_length:
 header = ["LEN", "OCCURENCES", "NR"]
 print(f"{header[0]: <3} | {header[1]: <19}| {header[2]}")
 print(separator)
+
 for key, value in sorted(counts.items()):
     chart = value * "*"
     print(f"{key: <3} | {chart: <19}| {value}")
