@@ -34,7 +34,7 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
-separator = "-" * 45
+separator = "-" * 55
 
 # used registered users
 # +------+-------------+
@@ -70,7 +70,7 @@ choice = input("Enter a number between 1 and 3 to select text: ")
 if not choice.isnumeric():
     print("Selected option is not number, terminating program..")
     quit()
-elif int(choice) > 0 and int(choice) < 4:
+elif 0 < int(choice) < 4:
     chosen_text = TEXTS[int(choice) - 1]
 else:
     print("Selected option not between 1 and 3, terminating program..")
@@ -107,6 +107,8 @@ number_of_numbers = len(word_occurence["numbers"])
 sum_of_numbers = sum(word_occurence["numbers"])
 
 #output individual cases
+print(f"\nTEXT {choice} \n{chosen_text}")
+print(separator)
 print(f"There are {number_of_words} words in the selected text.")
 print(f"There are {number_of_title} titlecase words.")
 print(f"There are {number_of_upper} uppercase words.")
